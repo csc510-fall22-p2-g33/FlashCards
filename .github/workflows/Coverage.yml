@@ -32,11 +32,11 @@ jobs:
       - name: Generate Coverage
         run: |
           export CI=GITHUB_ACTIONS
-          coverage run --source backend -m backend.test.Test
+          coverage run -m backend.test.Test
           coverage xml
 
       - name: Upload to CodeCov
         run: |
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           chmod +x codecov
-          ./codecov
+          ./codecov -t ${{ secrets.CODECOV_TOKEN }}

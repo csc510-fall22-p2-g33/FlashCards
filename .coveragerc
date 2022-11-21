@@ -1,0 +1,5 @@
+[run]
+source = backend
+
+[report]
+include = backend/src/*
