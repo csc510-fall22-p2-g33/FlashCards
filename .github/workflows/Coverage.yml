@@ -32,7 +32,7 @@ jobs:
       - name: Generate Coverage
         run: |
           export CI=GITHUB_ACTIONS
-          coverage run --source backend -m backend.test.Test
+          coverage run -m backend.test.Test
           coverage xml
 
       - name: Upload to CodeCov
