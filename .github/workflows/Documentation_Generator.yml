@@ -2,7 +2,7 @@ name: Documentation Generator
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "25-fix-github-actions-throwaway"]
 jobs:
   build:
     runs-on: ubuntu-latest
