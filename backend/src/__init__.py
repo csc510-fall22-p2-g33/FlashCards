@@ -1,14 +1,14 @@
 import pyrebase
 
 config = {
-  'apiKey': "AIzaSyCfwbXgAzgIMbyYgf8VYbIUcy3351RE5iA",
-  'authDomain': "pulse-cc3c6.firebaseapp.com",
-  'databaseURL': "https://pulse-cc3c6-default-rtdb.firebaseio.com",
-  'projectId': "pulse-cc3c6",
-  'storageBucket': "pulse-cc3c6.appspot.com",
-  'messagingSenderId': "42156089304",
-  'appId': "1:42156089304:web:a95a7bcbc95a31a1a6dcad",
-  'measurementId': "G-X5JRM2VEEC"
+  'apiKey': "AIzaSyAQjigaQ9FS1UlSAeGwZmIkoWnv0AnqvEU",
+  'authDomain': "flashcards-test-7fbf8.firebaseapp.com",
+  'databaseURL': "https://flashcards-test-7fbf8-default-rtdb.firebaseio.com",
+  'projectId': "flashcards-test-7fbf8",
+  'storageBucket': "flashcards-test-7fbf8.appspot.com",
+  'messagingSenderId': "506242405702",
+  'appId': "1:506242405702:web:2e9349c19e3ed314704147",
+  'measurementId': "G-5LBEP5LQTH"
 }
 
 firebase = pyrebase.initialize_app(config)
