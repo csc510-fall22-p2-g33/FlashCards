@@ -36,4 +36,4 @@ jobs:
           coverage xml
 
       - name: Upload to CodeCov
-      - uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v3
