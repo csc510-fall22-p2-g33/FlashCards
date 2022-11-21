@@ -1,2 +1,2 @@
 [run]
-source = backend/src/auth, backend/src/cards, backend/src/deck
+source = backend
