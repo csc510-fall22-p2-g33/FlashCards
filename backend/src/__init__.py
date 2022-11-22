@@ -1,4 +1,5 @@
 import pyrebase
+import os
 
 config = {
   'apiKey': "AIzaSyAQjigaQ9FS1UlSAeGwZmIkoWnv0AnqvEU",
@@ -10,5 +11,10 @@ config = {
   'appId': "1:506242405702:web:2e9349c19e3ed314704147",
   'measurementId': "G-5LBEP5LQTH"
 }
+
+if os.environ.get('CI') == 'true':
+  config['databaseURL'] = config['databaseURL'] + '/CI-rtdb'
+  print('CI environment detected!')
+  print(f'Using CI database at {config["databaseURL"]} for testing.')
 
 firebase = pyrebase.initialize_app(config)
