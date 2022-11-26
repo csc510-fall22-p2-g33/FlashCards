@@ -27,6 +27,8 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import http from "utils/api";
 import "./styles.scss";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { GoogleOutlined } from "@ant-design/icons";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -66,6 +68,43 @@ const Register = () => {
         setIsSubmitting(false);
       });
   };
+
+  const handleGoogle = () => {
+    setIsSubmitting(true)
+
+    const provider = new GoogleAuthProvider()
+    const auth = getAuth();
+
+    signInWithPopup(auth, provider).then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      // The signed-in user info.
+      const userRes = result.user;
+      // Formatting for our app is a little weird.
+      const user = {
+        ...userRes,
+        localId: userRes.uid
+      }
+      window.localStorage.setItem('flashCardUser', JSON.stringify(user))
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful!',
+        text: 'You have successfully logged in',
+        confirmButtonColor: '#221daf',
+      }).then(() => {
+        setIsSubmitting(false);
+        window.location.replace("/dashboard");
+      })
+    }).catch((error) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Failed!',
+        text: 'An error occurred, please try again',
+        confirmButtonColor: '#221daf',
+      })
+      setIsSubmitting(false);
+    });
+  }
 
   return (
     <div className="register-page">
@@ -113,6 +152,24 @@ const Register = () => {
                     Already have an account? <Link to="/login">Login</Link>
                   </p>
                 </form>
+                <hr/>
+                <button 
+                  onClick={handleGoogle} 
+                  className="btn btn-main btn-block mt-3"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <GoogleOutlined 
+                    style={{
+                      fontSize: '20px',
+                      paddingRight: '10px'
+                    }}
+                  /> 
+                  <span>Login with Google</span>
+                </button>
               </div>
             </div>
           </div>
