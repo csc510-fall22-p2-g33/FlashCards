@@ -33,7 +33,6 @@ jobs:
 
       - name: Generate Coverage
         run: |
-          export CI=GITHUB_ACTIONS
           coverage run -m backend.test.Test
           coverage xml
 
