@@ -8,6 +8,10 @@
 
 # testing
 /coverage
+.coverage
+coverage.xml
+/backend/test/__pycache__
+/backend/test/**/__pycache__
 
 # production
 /build

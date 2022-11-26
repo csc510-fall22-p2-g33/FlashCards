@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 
-const baseURL = 'https://flashcards-server-api.herokuapp.com'
+const baseURL = process.env.REACT_APP_API_URL
 
 const http: AxiosInstance = axios.create({
   baseURL,
