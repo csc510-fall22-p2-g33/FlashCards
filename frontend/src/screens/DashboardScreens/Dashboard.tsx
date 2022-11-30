@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-import { Card, Popconfirm } from "antd";
+import { Card, Popconfirm, Input } from "antd";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import EmptyImg from "assets/images/empty.svg";
@@ -29,6 +29,8 @@ import { PropagateLoader } from "react-spinners";
 import http from "utils/api";
 import "./styles.scss";
 import Swal from "sweetalert2";
+
+import Popup from 'reactjs-popup';
 
 interface Deck {
   id: string;
@@ -93,6 +95,31 @@ const Dashboard = () => {
       });
   };
 
+  const handleInvite = async(id: any) => {
+
+    // await http
+    //   .delete(`/deck/delete/${id}`)
+    //   .then((res) => {
+    //     const { id } = res.data;
+    //     Swal.fire({
+    //       icon: 'success',
+    //       title: 'Deck Deleted Successfully!',
+    //       text: 'You have successfully deleted a deck',
+    //       confirmButtonColor: '#221daf',
+    //     }).then(() => {
+    //       window.location.replace(`/dashboard`);
+    //     })
+    //   })
+    //   .catch((err) => {
+    //     Swal.fire({
+    //       icon: 'error',
+    //       title: 'Deck Deletion Failed!',
+    //       text: 'An error occurred, please try again',
+    //       confirmButtonColor: '#221daf',
+    //     })
+    //   });
+  };
+
   return (
     <div className="dashboard-page dashboard-commons">
       <section>
@@ -147,9 +174,52 @@ const Dashboard = () => {
                             {visibility === "public" ? (
                               <i className="lni lni-world"></i>
                             ) : visibility === "private" ? (
-                              <i className="lni lni-lock-alt"></i>
+                              <div>
+                                <i className="lni lni-lock-alt"></i>
+                                
+                              </div>
+
                             ) : null}{" "}
                             {visibility}
+
+                            {/* tithi */}
+                            {visibility === "private" &&
+                              <div className="col d-flex justify-content-end">
+                              {/* <Popconfirm
+                                title="Enter email address of your friend to invite."
+                                onConfirm={() => handleInvite(id)}
+                                okText="Yes"
+                                cancelText="No"
+                                
+
+                              >
+                                <>
+                                <Input
+                                  placeholder="Enter your Name"
+                                  // onChange={(e) => setName(e.target.value)}
+                                /></>
+
+                                <button className="btn text-edit">
+                                  <i className="lni lni-pencil-alt"></i> Invite
+                                </button>
+                              </Popconfirm> */}
+
+                              <Popup trigger={
+                                <button className="btn text-edit">
+                                <i className="lni lni-pencil-alt"></i> Invite
+                              </button>
+                              } 
+                              position="right center">
+                                <div>Enter the email address of your friend to invite.</div>
+                                <Input
+                                  placeholder="Email Address"
+                                  // onChange={(e) => setName(e.target.value)}
+                                />
+                                <button>Send</button>
+                              </Popup>
+                            </div>
+                            }
+
                           </div>
                         </div>
                         <p className="description">{description}</p>
@@ -170,6 +240,8 @@ const Dashboard = () => {
                               </button>
                             </Link>
                           </div>
+                          
+
                           <div className="col d-flex justify-content-end">
                             <Popconfirm
                               title="Are you sure to delete this task?"
