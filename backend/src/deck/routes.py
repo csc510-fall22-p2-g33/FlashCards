@@ -63,6 +63,7 @@ def getdecks():
     authenticated then only show decks that have public vissibility.'''
     args = request.args
     localId = args and args['localId']
+    print(localId,"localID")
     try:
         if localId:
             user_decks = db.child("deck").order_by_child("userId").equal_to(localId).get()

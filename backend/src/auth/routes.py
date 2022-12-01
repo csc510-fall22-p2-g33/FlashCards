@@ -25,6 +25,9 @@ from flask import Blueprint, jsonify
 from flask import current_app as app
 from flask_cors import cross_origin
 from flask import request
+import requests
+
+
 try:
     from .. import firebase
 except ImportError:
@@ -50,14 +53,20 @@ def signup():
         email = data['email']
         password = data['password']
     
+        print("I am printing")
         user = auth.create_user_with_email_and_password(email, password)
+        # user = auth.refresh(user['refreshToken'])
+        # request.session['user_uuid'] = user
+        
+        print(user)
         '''if the registration process is successful, this message is displayed'''
         return jsonify(
             user = user,                            
             message = 'Registered Successfully',    
             status = 201
         ), 201
-    except:
+    except requests.exceptions.HTTPError as e:
+        print(e)
         '''if the registration process is not successful, this message is displayed'''
         return jsonify(
             message = 'Registration Failed',        

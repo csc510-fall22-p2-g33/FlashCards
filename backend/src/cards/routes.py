@@ -68,9 +68,9 @@ def createcards(deckId):
         cards = data['cards']
         
         '''remove existing cards'''
-        previous_cards = db.child("card").order_by_child("deckId").equal_to(deckId).get()
-        for card in previous_cards.each():
-            db.child("card").child(card.key()).remove()
+        # previous_cards = db.child("card").order_by_child("deckId").equal_to(deckId).get()
+        # for card in previous_cards.each():
+        #     db.child("card").child(card.key()).remove()
         
         '''add new cards'''
         for card in cards:

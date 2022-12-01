@@ -12,6 +12,7 @@
 coverage.xml
 /backend/test/__pycache__
 /backend/test/**/__pycache__
+config-ud.json
 
 # production
 /build

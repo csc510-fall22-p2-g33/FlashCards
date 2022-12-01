@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "local-cors-proxy": "^1.1.0"
+  }
+}
