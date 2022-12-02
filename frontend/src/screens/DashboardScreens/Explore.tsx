@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 import EmptyImg from "assets/images/empty.svg";
+import RatingSystem from "../../components/RatingSystem";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
@@ -35,6 +36,7 @@ interface Deck {
   description: string;
   visibility: string;
   cards_count: number;
+  rating: number;
 }
 
 const Explore = () => {
@@ -119,23 +121,26 @@ const Explore = () => {
                     }
                   })
                   .map(
-                    ({ id, title, description, visibility, cards_count }, index) => {
+                    ({ id, title, description, visibility, cards_count, rating }, index) => {
                       return (
                         <div className="col-md-4">
-                          <Link to={`/deck/${id}/practice`}>
                             <div className="flash-card__item">
-                              <div className="d-flex justify-content-between align-items-center">
-                                <h5>{title}</h5>
-                                {visibility === "public" ? (
-                                  <i className="lni lni-world"></i>
-                                ) : visibility === "private" ? (
-                                  <i className="lni lni-lock-alt"></i>
-                                ) : null}
-                              </div>
-                              <p className="description">{description}</p>
-                              <p className="items-count">{cards_count} item(s)</p>
+                              <Link to={`/deck/${id}/practice`}>
+                                <div>
+                                  <div className="d-flex justify-content-between align-items-center">
+                                    <h5>{title}</h5>
+                                    {visibility === "public" ? (
+                                      <i className="lni lni-world"></i>
+                                    ) : visibility === "private" ? (
+                                      <i className="lni lni-lock-alt"></i>
+                                    ) : null}
+                                  </div>
+                                  <p className="description">{description}</p>
+                                  <p className="items-count">{cards_count} item(s)</p>
+                                </div>
+                              </Link>
+                              <RatingSystem deckid={id} rating={rating}/>
                             </div>
-                          </Link>
                         </div>
                       );
                     }
