@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile.production
+    ports:
+      - 3000:3000
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile.production
+    ports:
+      - 8000:8000
