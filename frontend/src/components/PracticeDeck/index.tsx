@@ -10,7 +10,16 @@ import { Pagination, Navigation } from "swiper";
 import ReactCardFlip from "react-card-flip";
 import { useState } from "react";
 
+import JsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import React, {Component, Ref} from 'react';
+
+
+
+
 export default function Flashcard({cards}: any) {
+  
+
   return (
     <>
       <Swiper
@@ -47,12 +56,87 @@ export default function Flashcard({cards}: any) {
 
 const Card = ({ front, back, index, total }: any) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isLearning, setLearning] = useState(true);
+  const [isBookmarked, setBookmark] = useState(false);
+  async function learning (e: any) {
+    if(e.target == e.currentTarget){
+      e.stopPropagation()
+    }
+    setLearning(true);
+    console.log("still learning");
+  }
+  async function learnt (e: any) {
+    if(e.target == e.currentTarget){
+      e.stopPropagation()
+    }
+    setLearning(false);
+    console.log("learnt");
+  }
+  async function bookmark (e: any) {
+    if(e.target == e.currentTarget){
+      e.stopPropagation()
+    }
+    setBookmark(!isBookmarked);
+    console.log("flipping bookmark");
+  }
+
+  // async function generatePDF (e: any) {
+  //   if(e.target == e.currentTarget){
+  //     e.stopPropagation()
+  //   }
+  //   const report = new JsPDF('portrait','pt','a4');
+  //   report.html(document.querySelector('#report')).then(() => {
+  //     report.save('report.pdf');
+  // });
+  //   console.log("downloading");
+  // }
+  const printRef = React.useRef();
+
+  const printDocument = async () => {
+    const element = printRef.current;
+    console.log (printRef)
+    // const canvas = await html2canvas(element);
+    // const data = canvas.toDataURL('image/png');
+
+    // const pdf = new JsPDF();
+    // const imgProperties = pdf.getImageProperties(data);
+    // const pdfWidth = pdf.internal.pageSize.getWidth();
+    // const pdfHeight =
+    //   (imgProperties.height * pdfWidth) / imgProperties.width;
+
+    // pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    // pdf.save('print.pdf');
+  }
+
   return (
-    <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-      <div className="card-item" onClick={() => setIsFlipped(!isFlipped)}>
+    <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical" >
+      <div className="card-item" onClick={() => setIsFlipped(!isFlipped)} >
         <div>
+        <button  onClick={printDocument}>Download</button>
+          {
+              isBookmarked ?
+            < input className="star" type="checkbox" title="bookmark page"  style={{'backgroundColor':'green'}} onClick={bookmark}/>
+            :
+            < input className="star" type="checkbox" title="bookmark page"  onClick={bookmark}/>
+          }
+          <br/><br/>
           <p>Front</p>
           <h2>{front}</h2>
+          {/* tithistarts */}
+          {
+            isLearning ? 
+            <div>
+            <button style={{'marginTop': '15%', 'marginRight': '2%', 'marginBottom': '2%', 'backgroundColor':'green'}} onClick={learning}>Still learning</button>
+            <button  onClick={learnt}>Learnt</button>
+            </div>
+            :
+            <div>
+            <button style={{'marginTop': '15%', 'marginRight': '2%', 'marginBottom': '2%'}} onClick={learning}>Still learning</button>
+            <button  style={{'backgroundColor':'green'}} onClick={learnt}>Learnt</button>
+            </div>
+          }
+          
+          {/* tithiends */}
         </div>
         <div className="bottom">
             <p>{index + 1} / {total}</p>

@@ -22,7 +22,7 @@ const Navbar = ({ isDashboard }: any) => {
                   aria-current="page"
                   to="/join"
                 >
-                  Join Requests
+                  Shared Decks
                 </Link>
               </li>
               <li className="nav-item">

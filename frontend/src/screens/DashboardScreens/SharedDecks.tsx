@@ -64,14 +64,19 @@ const Explore = () => {
         setFetchingDecks(false);
       });
 
-    //   Deck d = {
-    //     id: '1';
-    //     userId: 'string';
-    //     title: 'string';
-    //     description: st'ring;
-    //     visibility: 'public';
-    //     cards_count: 1;
-    //   }
+    // tithistarts
+    // const d = [{
+    //   cards_count: 1,
+    //   description: "Meow",
+    //   id: "-NHSRdwZPA2UFQZUe6xw",
+    //   title: "Cat Facts",
+    //   userId: "j2uwMlm9MfUhuFTXB0fA8GLnxui2",
+    //   visibility: "custom",
+    //   shared_with: []
+    // }]
+    // setDecks(d);
+    // setFetchingDecks(false);
+    // tithiends
   };
 
   return (
@@ -100,6 +105,8 @@ const Explore = () => {
               <div className="col-md-12">
                 <p className="title">Your Library</p>
               </div>
+        
+        
               {fetchingDecks ? (
                 <div
                   className="col-md-12 text-center d-flex justify-content-center align-items-center"
@@ -131,26 +138,33 @@ const Explore = () => {
                   .map(
                     ({ id, title, description, visibility, cards_count }, index) => {
                       return (
-                        <div className="col-md-4">
-                          <Link to={`/deck/${id}/practice`}>
-                            <div className="flash-card__item">
-                              <div className="d-flex justify-content-between align-items-center">
-                                <h5>{title}</h5>
-                                {visibility === "public" ? (
-                                  <i className="lni lni-world"></i>
-                                ) : visibility === "private" ? (
-                                  <i className="lni lni-lock-alt"></i>
-                                ) : null}
-                              </div>
-                              <p className="description">{description}</p>
-                              <p className="items-count">{cards_count} item(s)</p>
+                        
+                        
+                            <div className="col-md-4">
+                              {/* {visibility==='custom'?  */}
+                              {visibility==='public'? 
+                              <Link to={`/deck/${id}/practice`}>
+                                <div className="flash-card__item">
+                                  <div className="d-flex justify-content-between align-items-center">
+                                    <h5>{title}</h5>
+                                    <i className="lni lni-network"></i>  
+                                     {/* icon for shared decks */}
+                                  </div>
+                                  <p className="description">{description}</p>
+                                  <p className="items-count">{cards_count} item(s)</p>
+                                </div>
+                              </Link>
+                              :
+                              <div><p>No Study Deck Shared Yet.</p></div>
+                            }
                             </div>
-                          </Link>
-                        </div>
+                        
+                        
                       );
                     }
                   )
               )}
+
             </div>
           </div>
         </div>

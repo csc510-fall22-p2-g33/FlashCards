@@ -182,27 +182,10 @@ const Dashboard = () => {
                             ) : null}{" "}
                             {visibility}
 
-                            {/* tithi */}
+                            {/* tithistarts */}
                             {visibility === "private" &&
                               <div className="col d-flex justify-content-end">
-                              {/* <Popconfirm
-                                title="Enter email address of your friend to invite."
-                                onConfirm={() => handleInvite(id)}
-                                okText="Yes"
-                                cancelText="No"
-                                
-
-                              >
-                                <>
-                                <Input
-                                  placeholder="Enter your Name"
-                                  // onChange={(e) => setName(e.target.value)}
-                                /></>
-
-                                <button className="btn text-edit">
-                                  <i className="lni lni-pencil-alt"></i> Invite
-                                </button>
-                              </Popconfirm> */}
+                              
 
                               <Popup trigger={
                                 <button className="btn text-edit">
@@ -219,6 +202,7 @@ const Dashboard = () => {
                               </Popup>
                             </div>
                             }
+                            {/* tithiends */}
 
                           </div>
                         </div>
