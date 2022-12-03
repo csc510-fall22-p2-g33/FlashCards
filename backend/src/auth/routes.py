@@ -35,7 +35,7 @@ auth_bp = Blueprint(
 )
 
 auth = firebase.auth()
-
+db = firebase.database()
 @auth_bp.route('/', methods=['GET'])
 @cross_origin(supports_credentials=True)
 def index():
@@ -49,8 +49,15 @@ def signup():
         data = request.get_json()
         email = data['email']
         password = data['password']
-    
+        displayname = "John Doe"
         user = auth.create_user_with_email_and_password(email, password)
+        if('name' in data):
+            # data to save
+            displayname = data['name']
+            # Pass the user's localId to the push method with displayname
+            db.child("users").push({ 
+            "userID": user["localId"], "displayName":displayname
+            })
         '''if the registration process is successful, this message is displayed'''
         return jsonify(
             user = user,                            
@@ -72,7 +79,6 @@ def login():
         data = request.get_json()
         email = data['email']
         password = data['password']                   
-        
         user = auth.sign_in_with_email_and_password(email, password)
         '''if login is successful, this message is displayed'''
         return jsonify(
