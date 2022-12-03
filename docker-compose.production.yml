@@ -1,13 +1,26 @@
+version: "3.8"
 services:
   frontend:
     build:
       context: frontend
       dockerfile: Dockerfile.production
     ports:
-      - 3000:3000
+      - 3000
+    restart: unless-stopped
   backend:
     build:
       context: backend
       dockerfile: Dockerfile.production
     ports:
+      - 8000
+    restart: unless-stopped
+  nginx:
+    build:
+      context: nginx
+    depends_on:
+      - frontend
+      - backend
+    ports:
       - 8000:8000
+      - 3000:3000
+    restart: unless-stopped
