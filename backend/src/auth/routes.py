@@ -55,8 +55,8 @@ def signup():
             # data to save
             displayname = data['name']
             # Pass the user's localId to the push method with displayname
-            db.child("users").push({ 
-            "userID": user["localId"], "displayName":displayname
+            db.child("user").push({ 
+            "userId": user["localId"], "displayName":displayname
             })
         '''if the registration process is successful, this message is displayed'''
         return jsonify(
@@ -80,6 +80,12 @@ def login():
         email = data['email']
         password = data['password']                   
         user = auth.sign_in_with_email_and_password(email, password)
+        localId = user['localId']
+        userInfo = db.child("user").order_by_child(
+                "userId").equal_to(localId).get()
+        obj = userInfo.each()[0].val()
+        user['displayName'] = obj['displayName']
+        
         '''if login is successful, this message is displayed'''
         return jsonify(
             user = user,
