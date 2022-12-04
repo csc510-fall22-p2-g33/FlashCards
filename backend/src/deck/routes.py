@@ -35,7 +35,8 @@ deck_bp = Blueprint(
 
 db = firebase.database()
 
-@deck_bp.route('/deck/<id>', methods = ['GET'])
+
+@deck_bp.route('/deck/<id>', methods=['GET'])
 @cross_origin(supports_credentials=True)
 def getdeck(id):
     '''This method is called when we want to fetch one of the decks, we pass deckid of this deck'''
@@ -116,7 +117,7 @@ def create():
         title = data['title']
         description = data['description']
         visibility = data['visibility']
-        
+
         db.child("deck").push({
             "userId": localId, "title": title, "description": description, "visibility": visibility
         })
@@ -189,13 +190,13 @@ def delete(id):
         db.child("deck").child(id).remove()
 
         return jsonify(
-            message = 'Delete Deck Successful',
-            status = 200
+            message='Delete Deck Successful',
+            status=200
         ), 200
     except Exception as e:
         return jsonify(
-            message = f'Delete Deck Failed {e}',
-            status = 400
+            message=f'Delete Deck Failed {e}',
+            status=400
         ), 400
 
 @deck_bp.route('/deck/invite/<email>/<localId>/<deckId>', methods = ['PATCH'])
