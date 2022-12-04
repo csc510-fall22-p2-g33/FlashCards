@@ -47,6 +47,7 @@ const Login = () => {
       .post("/login", payload)
       .then((res) => {
         const { user } = res.data || {}
+        console.log ("user info:", JSON.stringify(user))
         window.localStorage.setItem('flashCardUser', JSON.stringify(user))
         Swal.fire({
           icon: 'success',

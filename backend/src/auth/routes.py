@@ -35,6 +35,7 @@ auth_bp = Blueprint(
 )
 
 auth = firebase.auth()
+db = firebase.database()
 
 @auth_bp.route('/', methods=['GET'])
 @cross_origin(supports_credentials=True)
@@ -51,6 +52,19 @@ def signup():
         password = data['password']
     
         user = auth.create_user_with_email_and_password(email, password)
+
+        print ("signing up", email)
+        print ("signing up local id", user['localId'])
+
+        # # tithi
+        db.child("user").push({
+            "email": email,
+            "userId": user['localId']
+        })
+
+        print ("signed up", email)
+
+
         '''if the registration process is successful, this message is displayed'''
         return jsonify(
             user = user,                            
@@ -66,7 +80,7 @@ def signup():
 
 @auth_bp.route('/login', methods=['POST'])
 @cross_origin(supports_credentials=True)
-def login():                                        
+def login():      
     '''this method is used by registered users to sign in to their account'''
     try:
         data = request.get_json()
@@ -74,6 +88,7 @@ def login():
         password = data['password']                   
         
         user = auth.sign_in_with_email_and_password(email, password)
+        print ("UID:", auth.current_user['localId'])
         '''if login is successful, this message is displayed'''
         return jsonify(
             user = user,

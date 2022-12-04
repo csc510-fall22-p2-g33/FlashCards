@@ -35,7 +35,6 @@ deck_bp = Blueprint(
 
 db = firebase.database()
 
-
 @deck_bp.route('/deck/<id>', methods = ['GET'])
 @cross_origin(supports_credentials=True)
 def getdeck(id):
@@ -114,6 +113,9 @@ def create():
         title = data['title']
         description = data['description']
         visibility = data['visibility']
+
+        print ("create deck - localId", localId)
+        # print ("deckId", deckId)
         
         db.child("deck").push({
             "userId": localId, "title": title, "description": description, "visibility" : visibility
@@ -170,5 +172,44 @@ def delete(id):
     except Exception as e:
         return jsonify(
             message = f'Delete Deck Failed {e}',
+            status = 400
+        ), 400
+
+@deck_bp.route('/deck/invite/<email>/<localId>/<deckId>', methods = ['PATCH'])
+@cross_origin(supports_credentials=True)
+def invite(email, localId, deckId):
+    '''This method is called when the user invites another user to join the deck.'''
+    try:
+        print (email)
+        user = db.child("user").order_by_child("email").equal_to(email).limit_to_first(1).get()
+        for item in user.each():
+            print("invite - friend id", item.val()['userId'])
+            friend_uid = item.val()['userId']
+            print ('friend_uid', friend_uid)
+
+        print ("invite - localId", localId)
+        print ("invite - deckId", deckId)
+
+        deck = db.child("deck").child(deckId).get()
+   
+        title = deck.val()['title']
+        description = deck.val()['description']
+        visibility = "custom"
+
+        print ("invite - deck", title, description, visibility)
+
+        db.child("deck").child(deckId).update({
+            "userId": localId, "title": title, "description": description, "visibility" : visibility, "shared_uids": friend_uid
+        })
+
+        return jsonify(
+            user = user.val(),
+            message = 'Fetched deck successfully',
+            status = 200
+        ), 200
+    except Exception as e:
+        return jsonify(
+            decks = [],
+            message = f"An error occurred: {e}",
             status = 400
         ), 400

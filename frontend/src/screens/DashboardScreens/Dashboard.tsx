@@ -48,6 +48,9 @@ const Dashboard = () => {
   const flashCardUser = window.localStorage.getItem("flashCardUser");
   const { localId } = (flashCardUser && JSON.parse(flashCardUser)) || {};
 
+
+  const [friend_email, setEmail] = useState('');
+
   useEffect(() => {
     fetchDecks();
   }, []);
@@ -97,27 +100,31 @@ const Dashboard = () => {
 
   const handleInvite = async(id: any) => {
 
-    // await http
-    //   .delete(`/deck/delete/${id}`)
-    //   .then((res) => {
-    //     const { id } = res.data;
-    //     Swal.fire({
-    //       icon: 'success',
-    //       title: 'Deck Deleted Successfully!',
-    //       text: 'You have successfully deleted a deck',
-    //       confirmButtonColor: '#221daf',
-    //     }).then(() => {
-    //       window.location.replace(`/dashboard`);
-    //     })
-    //   })
-    //   .catch((err) => {
-    //     Swal.fire({
-    //       icon: 'error',
-    //       title: 'Deck Deletion Failed!',
-    //       text: 'An error occurred, please try again',
-    //       confirmButtonColor: '#221daf',
-    //     })
-    //   });
+    console.log ("Inviting friends!")
+    console.log (friend_email, localId, id)
+
+
+    await http
+      .patch(`/deck/invite/${friend_email}/${localId}/${id}`)
+      .then((res) => {
+        const { id } = res.data;
+        Swal.fire({
+          icon: 'success',
+          title: 'Invited in Deck Successfully!',
+          text: 'You have successfully invited your friend',
+          confirmButtonColor: '#221daf',
+        }).then(() => {
+          window.location.replace(`/dashboard`);
+        })
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Deck Invitation Failed!',
+          text: 'An error occurred, please try again',
+          confirmButtonColor: '#221daf',
+        })
+      });
   };
 
   return (
@@ -196,9 +203,9 @@ const Dashboard = () => {
                                 <div>Enter the email address of your friend to invite.</div>
                                 <Input
                                   placeholder="Email Address"
-                                  // onChange={(e) => setName(e.target.value)}
+                                  onChange={(e) => setEmail(e.target.value)}
                                 />
-                                <button>Send</button>
+                                <button onClick={() => handleInvite (id)}>Send</button>
                               </Popup>
                             </div>
                             }
