@@ -56,7 +56,7 @@ def signup():
             displayname = data['name']
             # Pass the user's localId to the push method with displayname
             db.child("user").push({ 
-            "userId": user["localId"], "displayName":displayname
+            "userId": user["localId"], "displayName":displayname,"email": email,
             })
         '''if the registration process is successful, this message is displayed'''
         return jsonify(
@@ -73,7 +73,7 @@ def signup():
 
 @auth_bp.route('/login', methods=['POST'])
 @cross_origin(supports_credentials=True)
-def login():                                        
+def login():      
     '''this method is used by registered users to sign in to their account'''
     try:
         data = request.get_json()

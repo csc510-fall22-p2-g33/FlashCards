@@ -11,11 +11,6 @@ import ReactCardFlip from "react-card-flip";
 import { useState } from "react";
 
 import JsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
-import React, {Component, Ref} from 'react';
-
-
-
 
 export default function Flashcard({cards}: any) {
   
@@ -80,39 +75,19 @@ const Card = ({ front, back, index, total }: any) => {
     console.log("flipping bookmark");
   }
 
-  // async function generatePDF (e: any) {
-  //   if(e.target == e.currentTarget){
-  //     e.stopPropagation()
-  //   }
-  //   const report = new JsPDF('portrait','pt','a4');
-  //   report.html(document.querySelector('#report')).then(() => {
-  //     report.save('report.pdf');
-  // });
-  //   console.log("downloading");
-  // }
-  const printRef = React.useRef();
-
-  const printDocument = async () => {
-    const element = printRef.current;
-    console.log (printRef)
-    // const canvas = await html2canvas(element);
-    // const data = canvas.toDataURL('image/png');
-
-    // const pdf = new JsPDF();
-    // const imgProperties = pdf.getImageProperties(data);
-    // const pdfWidth = pdf.internal.pageSize.getWidth();
-    // const pdfHeight =
-    //   (imgProperties.height * pdfWidth) / imgProperties.width;
-
-    // pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    // pdf.save('print.pdf');
+  async function generatePDF (e: any) {
+    if(e.target == e.currentTarget){
+      e.stopPropagation()
+    }
+    e.html(document.querySelector('#report')).then(() => {
+      e.save('report.pdf');
+  });
+    console.log("downloading");
   }
-
   return (
-    <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical" >
-      <div className="card-item" onClick={() => setIsFlipped(!isFlipped)} >
+    <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
+      <div className="card-item" onClick={() => setIsFlipped(!isFlipped)}>
         <div>
-        <button  onClick={printDocument}>Download</button>
           {
               isBookmarked ?
             < input className="star" type="checkbox" title="bookmark page"  style={{'backgroundColor':'green'}} onClick={bookmark}/>
