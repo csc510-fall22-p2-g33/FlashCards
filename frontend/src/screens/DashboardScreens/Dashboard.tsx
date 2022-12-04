@@ -22,13 +22,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 import { Card, Popconfirm, Input } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Component } from "react";
+
 import { Link } from "react-router-dom";
 import EmptyImg from "assets/images/empty.svg";
 import { PropagateLoader } from "react-spinners";
 import http from "utils/api";
 import "./styles.scss";
 import Swal from "sweetalert2";
+import RatingSystem from "../../components/RatingSystem";
 
 import Popup from 'reactjs-popup';
 
@@ -39,6 +41,7 @@ interface Deck {
   description: string;
   visibility: string;
   cards_count: number;
+  rating: number;
 }
 
 const Dashboard = () => {
@@ -169,7 +172,7 @@ const Dashboard = () => {
               </div>
             ) : (
               decks.map(
-                ({ id, title, description, visibility, cards_count }, index) => {
+                ({ id, title, description, visibility, cards_count, rating }, index) => {
                   return (
                     <div className="col-md-4">
                       <div className="flash-card__item">
@@ -246,6 +249,9 @@ const Dashboard = () => {
                             </Popconfirm>
                           </div>
                         </div>
+                        {visibility === "public" && (
+                          <RatingSystem deckid={id} rating={rating}/>
+                        )}
                       </div>
                     </div>
                   );
