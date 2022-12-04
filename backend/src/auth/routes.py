@@ -53,17 +53,11 @@ def signup():
     
         user = auth.create_user_with_email_and_password(email, password)
 
-        print ("signing up", email)
-        print ("signing up local id", user['localId'])
-
         # # tithi
         db.child("user").push({
             "email": email,
             "userId": user['localId']
         })
-
-        print ("signed up", email)
-
 
         '''if the registration process is successful, this message is displayed'''
         return jsonify(

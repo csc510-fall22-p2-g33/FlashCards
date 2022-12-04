@@ -50,19 +50,24 @@ const Explore = () => {
   }, []);
 
   const fetchDecks = async () => {
+    console.log ("loading shared decks")
     setFetchingDecks(true);
+    const params = { localId };
     await http
-      .get("/deck/all")
+      .get(`/deck/shared/${localId}`, {
+        params,
+      })
       .then((res) => {
         const { decks: _decks } = res.data || {};
-        console.log (_decks)
         setDecks(_decks);
         setFetchingDecks(false);
+        console.log (_decks)
       })
       .catch((err) => {
         setDecks([]);
         setFetchingDecks(false);
       });
+  
 
     // tithistarts
     // const d = [{
@@ -142,7 +147,7 @@ const Explore = () => {
                         
                             <div className="col-md-4">
                               {/* {visibility==='custom'?  */}
-                              {visibility==='public'? 
+                              {visibility==='private'? 
                               <Link to={`/deck/${id}/practice`}>
                                 <div className="flash-card__item">
                                   <div className="d-flex justify-content-between align-items-center">
