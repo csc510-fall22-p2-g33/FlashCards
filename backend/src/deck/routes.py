@@ -116,9 +116,6 @@ def create():
         title = data['title']
         description = data['description']
         visibility = data['visibility']
-
-        print ("create deck - localId", localId)
-        # print ("deckId", deckId)
         
         db.child("deck").push({
             "userId": localId, "title": title, "description": description, "visibility": visibility
@@ -206,23 +203,14 @@ def delete(id):
 def invite(email, localId, deckId):
     '''This method is called when the user invites another user to join the deck.'''
     try:
-        print (email)
         user = db.child("user").order_by_child("email").equal_to(email).limit_to_first(1).get()
         for item in user.each():
-            print("invite - friend id", item.val()['userId'])
             friend_uid = item.val()['userId']
-            print ('friend_uid', friend_uid)
-
-        print ("invite - localId", localId)
-        print ("invite - deckId", deckId)
 
         deck = db.child("deck").child(deckId).get()
-   
         title = deck.val()['title']
         description = deck.val()['description']
-        visibility = "custom"
-
-        print ("invite - deck", title, description, visibility)
+        visibility = deck.val()['visibility']
 
         db.child("deck").child(deckId).update({
             "userId": localId, "title": title, "description": description, "visibility" : visibility, "shared_uids": friend_uid
@@ -237,5 +225,36 @@ def invite(email, localId, deckId):
         return jsonify(
             decks = [],
             message = f"An error occurred: {e}",
+            status = 400
+        ), 400
+
+
+@deck_bp.route('/deck/shared/<localId>', methods = ['GET'])
+@cross_origin(supports_credentials=True)
+def getshareddecks(localId):
+    '''This method is called when we want to fetch all the shared decks. Here, we check if the user is authenticated, 
+    if yes show all the decks shared with the user.'''
+    # args = request.args
+    # localId = args and args['localId']
+    try:
+        if localId:
+            user_decks = db.child("deck").order_by_child("shared_uids").equal_to(localId).get()
+            decks = []
+            for deck in user_decks.each():
+                obj = deck.val()
+                obj['id'] = deck.key()
+                cards = db.child("card").order_by_child("deckId").equal_to(deck.key()).get()
+                obj['cards_count'] = len(cards.val())
+                decks.append(obj)
+                
+            return jsonify(
+                decks = decks,
+                message = 'Fetching decks successfully',
+                status = 200
+            ), 200
+    except Exception as e:
+        return jsonify(
+            decks = [],
+            message = f"An error occurred {e}",
             status = 400
         ), 400
