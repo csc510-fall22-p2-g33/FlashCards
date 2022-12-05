@@ -58,6 +58,7 @@ def signup():
             displayname = data['name']
             # Pass the user's localId to the push method with displayname
             db.child("user").push({ 
+
             "userId": user["localId"], "displayName":displayname, "email": email
             })
         else:

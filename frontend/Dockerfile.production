@@ -1,0 +1,14 @@
+FROM node:16
+WORKDIR /app
+
+# Install requirements
+COPY package.json package.json
+RUN npm install --legacy-peer-deps
+
+# Build application
+COPY . .
+RUN npm run build
+
+# Run application
+EXPOSE 3000
+ENTRYPOINT npx serve -s build

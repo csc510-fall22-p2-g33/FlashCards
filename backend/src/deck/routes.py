@@ -182,6 +182,29 @@ def rate(id):
         ), 400
 
 
+@deck_bp.route('/deck/rate/<id>', methods=['PATCH'])
+@cross_origin(supports_credentials=True)
+def rate(id):
+    '''This method is called when the user requests to rate a deck. The deck can be rated from 1-5 stars.'''
+    try:
+        data = request.get_json()
+        rating = data['rating']
+
+        db.child("deck").child(id).update({
+            "rating": rating
+        })
+
+        return jsonify(
+            message='Rate Deck Successful',
+            status=200
+        ), 201
+    except Exception as e:
+        return jsonify(
+            message=f'Rate Deck Failed {e}',
+            status=400
+        ), 400
+
+
 @deck_bp.route('/deck/delete/<id>', methods=['DELETE'])
 @cross_origin(supports_credentials=True)
 def delete(id):
@@ -258,4 +281,3 @@ def getshareddecks(localId):
             decks = [],
             message = f"An error occurred {e}",
             status = 400
-        ), 400
