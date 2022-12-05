@@ -23,7 +23,7 @@ SOFTWARE.
 */
 import { Card, Radio } from "antd";
 import EmptyImg from "assets/images/empty.svg";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
@@ -61,6 +61,54 @@ const CreateCards = () => {
   const flashCardUser = window.localStorage.getItem("flashCardUser");
   const { localId } = (flashCardUser && JSON.parse(flashCardUser)) || {};
 
+  const [file, setFile] = useState();
+  const [array, setArray] = useState([]);
+  const fileReader = new FileReader();
+
+  const handleOnChange = (e:any) => {
+      setFile(e.target.files[0]);
+  };
+
+  const csvFileToArray = (string1:String) => {
+    const csvHeader = string1.slice(0, string1.indexOf("\n")).split(",");
+    const csvRows = string1.slice(string1.indexOf("\n") + 1).split("\n");
+    csvHeader.pop();
+    csvRows.pop();
+    console.log(csvHeader)
+    console.log(csvRows)
+    // for (let i = 0; i < csvRows.length; i++) {
+    //   text += cars[i] + "<br>";
+    // }
+    const cardHeader = ['front', 'back', 'hint'];
+
+    const array2 = csvRows.map((i:any) => {
+      const values = i.split(",");
+      const obj = cardHeader.reduce((object1:any, header, index) => {
+        object1[header] = values[index];
+        return object1;
+      }, {});
+      return obj;
+    });
+    console.log(array2)
+    setCards(array2)
+    // setArray(array2);
+  };
+
+  const handleOnSubmit = (e:any) => {
+      e.preventDefault();
+      console.log("yes")
+      if (file) {
+          fileReader.onload = function (event:any) {
+            const text = event.target.result;
+            csvFileToArray(text);
+            // console.log(text)
+          };
+
+          fileReader.readAsText(file);
+      }
+  };
+  // const headerKeys = Object.keys(Object.assign({}, ...array));
+  
   useEffect(() => {
     fetchDeck();
     fetchCards();
@@ -178,6 +226,14 @@ const CreateCards = () => {
                         <i className="lni lni-pencil-alt"></i> Edit Deck details
                       </Link>
                     </button>
+                    <div className="btn btn-mains">
+                        <form>
+                            <input type={"file"} accept={".csv"} id={"csvFileInput"} onChange={handleOnChange} />
+                            <button className="lni" onClick={(e) => {
+                                handleOnSubmit(e);
+                              }}>Import from CSV</button>
+                        </form>
+                    </div>
                   </div>
                 </div>
                 <div className="col-md-12">
@@ -262,6 +318,31 @@ const CreateCards = () => {
                       );
                     })
                   )}
+
+                  {/* <table>
+                          <thead>
+                            <tr key={"header"}>
+                              {headerKeys.map((key) => (
+                                <th>{key}</th>
+                              ))}
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            {card.map((item:any) => (
+                              <tr key={item.id}>
+                                {Object.values(item).map((val:any) => (
+                                  <td>{val}</td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table> */}
+
+
+
+
+
                   <div className="row justify-content-end">
                     <div className="col-md-12 text-right">
                       <button
