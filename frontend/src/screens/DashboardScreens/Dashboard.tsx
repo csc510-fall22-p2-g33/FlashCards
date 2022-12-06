@@ -47,17 +47,19 @@ const Dashboard = () => {
 
   const flashCardUser = window.localStorage.getItem("flashCardUser");
   const { localId } = (flashCardUser && JSON.parse(flashCardUser)) || {};
-
+  const { displayName } = (flashCardUser && JSON.parse(flashCardUser)) || {};
 
   const [friend_email, setEmail] = useState('');
 
   useEffect(() => {
+    console.log(displayName)
     fetchDecks();
   }, []);
 
   const fetchDecks = async () => {
     setFetchingDecks(true);
     const params = { localId };
+
     await http
       .get("/deck/all", {
         params,
@@ -137,7 +139,7 @@ const Dashboard = () => {
                 <div className="flex justify-between items-center">
                   <div>
                     <h3>
-                      <b>Hey, Welcome Back!</b> 👋
+                      <b>Welcome back {displayName}!</b> 👋
                     </h3>
                     <p className="">
                       Let's start creating, memorizing and sharing your

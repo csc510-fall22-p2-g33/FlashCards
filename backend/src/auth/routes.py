@@ -99,6 +99,27 @@ def login():
             status = 400
         ), 400
 
+
+@auth_bp.route('/user/<userId>', methods = ['GET'])
+@cross_origin(supports_credentials=True)
+def getUserInfo(userId):
+    '''This method is called when the user want to his profile information '''
+    try:
+        user_profile = db.child("user").order_by_child("userId").equal_to(userId).get()
+        users = [user.val() for user in user_profile.each()]
+        return jsonify(
+            user = users[0],
+            message = 'Fetching user successfully',
+            status = 200
+        ), 200
+    except Exception as e:
+        return jsonify(
+            user = [],
+            message = f"An error occurred {e}",
+            status = 400
+        ), 400
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
