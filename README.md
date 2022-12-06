@@ -41,6 +41,9 @@ FlashCards is a spaced repetition learning platform to <b>create</b>, <b>memoriz
 1. Create and customize your own deck of cards
 2. Practice mode
 
+## Update Video
+Watch [on YouTube](https://youtu.be/BGe249gg9sQ)
+
 ## Watch Flashcards in Action
 https://user-images.githubusercontent.com/17693596/194787705-309ebf62-2a3d-4075-94b4-6da814a953a8.mp4
 
