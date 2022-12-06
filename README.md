@@ -6,31 +6,31 @@
   />
 </p>
 <p align="center">
-  <a href="https://github.com/JohnDamilola/FlashCards/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/johndamilola/flashcards?style=plastic"></a>
-  <img src="https://img.shields.io/github/languages/count/johndamilola/flashcards">
-  <a href="https://github.com/JohnDamilola/FlashCards/graphs/contributors" alt="Contributors">
-<img src="https://img.shields.io/github/contributors/JohnDamilola/FlashCards?style=plastic"/> </a>
-<a href="https://github.com/JohnDamilola/FlashCards/actions/workflows/Application.yml" alt="Python application">
-<img src="https://github.com/JohnDamilola/FlashCards/actions/workflows/Application.yml/badge.svg?style=plastic?branch=main"/> </a>
-<a href="https://github.com/JohnDamilola/FlashCards/actions/workflows/Coverage.yml/badge.svg" alt="Code coverage">
-<img src="https://github.com/JohnDamilola/FlashCards/actions/workflows/Coverage.yml/badge.svg"/> </a>
-<a href="https://app.codecov.io/gh/JohnDamilola/FlashCards" alt="Codecov">
-<img src="https://codecov.io/github/JohnDamilola/FlashCards/branch/main/graph/badge.svg"/> </a>
-<a href="https://zenodo.org/badge/latestdoi/539553646" alt="DOI">
-<img src="https://zenodo.org/badge/539553646.svg"/> </a>
+  <a href="https://github.com/csc510-fall22-p2-g33/FlashCards/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/csc510-fall22-p2-g33/flashcards?style=plastic"></a>
+  <img src="https://img.shields.io/github/languages/count/csc510-fall22-p2-g33/flashcards">
+  <a href="https://github.com/csc510-fall22-p2-g33/FlashCards/graphs/contributors" alt="Contributors">
+<img src="https://img.shields.io/github/contributors/csc510-fall22-p2-g33/FlashCards?style=plastic"/> </a>
+<a href="https://github.com/csc510-fall22-p2-g33/FlashCards/actions/workflows/Application.yml" alt="Python application">
+<img src="https://github.com/csc510-fall22-p2-g33/FlashCards/actions/workflows/Application.yml/badge.svg?style=plastic?branch=main"/> </a>
+<a href="https://github.com/csc510-fall22-p2-g33/FlashCards/actions/workflows/Coverage.yml/badge.svg" alt="Code coverage">
+<img src="https://github.com/csc510-fall22-p2-g33/FlashCards/actions/workflows/Coverage.yml/badge.svg"/> </a>
+<a href="https://codecov.io/github/csc510-fall22-p2-g33/FlashCards" >
+<img src="https://codecov.io/github/csc510-fall22-p2-g33/FlashCards/branch/main/graph/badge.svg?token=RYRDY1IZNM"/></a>
+<a href="https://zenodo.org/badge/latestdoi/564548849" alt="DOI">
+<img src="https://zenodo.org/badge/564548849.svg"/> </a>
 <a href="https://img.shields.io/badge/python-v3.8+-yellow.svg" alt="Python version">
 <img src="https://img.shields.io/badge/python-v3.8+-yellow.svg"/> </a>
-<a href="https://img.shields.io/github/repo-size/JohnDamilola/FlashCards?color=brightgreen" alt="Repo size">
-<img src="https://img.shields.io/github/repo-size/JohnDamilola/FlashCards?color=brightgreen"/> </a>
-<img src="https://img.shields.io/github/languages/top/JohnDamilola/Flashcards?style=plastic">
-<img src="https://img.shields.io/tokei/lines/github/johndamilola/flashcards?style=plastic">
-<a href="https://github.com/JohnDamilola/FlashCards/issues">
-  <img src="https://img.shields.io/github/issues-raw/johndamilola/flashcards?style=plastic"></a>
+<a href="https://img.shields.io/github/repo-size/csc510-fall22-p2-g33/FlashCards?color=brightgreen" alt="Repo size">
+<img src="https://img.shields.io/github/repo-size/csc510-fall22-p2-g33/FlashCards?color=brightgreen"/> </a>
+<img src="https://img.shields.io/github/languages/top/csc510-fall22-p2-g33/Flashcards?style=plastic">
+<img src="https://img.shields.io/tokei/lines/github/csc510-fall22-p2-g33/flashcards?style=plastic">
+<a href="https://github.com/csc510-fall22-p2-g33/FlashCards/issues">
+  <img src="https://img.shields.io/github/issues-raw/csc510-fall22-p2-g33/flashcards?style=plastic"></a>
 
 
-<a href="https://img.shields.io/github/release/JohnDamilola/FlashCards?color=brightblue" alt="Release">
-<img src="https://img.shields.io/github/release/JohnDamilola/FlashCards?color=brightblue"/> </a>
+<a href="https://img.shields.io/github/release/csc510-fall22-p2-g33/FlashCards?color=brightblue" alt="Release">
+<img src="https://img.shields.io/github/release/csc510-fall22-p2-g33/FlashCards?color=brightblue"/> </a>
 </p>
 
 ## Description
