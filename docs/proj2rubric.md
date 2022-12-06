@@ -24,7 +24,7 @@ Notes|Self-Assessment (90/90)|Evidence
 |The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up|3|[CONTRIBUTING.md](https://github.com/csc510-fall22-p2-g33/FlashCards/blob/main/CONTRIBUTING.md)
 |Issues are discussed before they are closed|3|[closed issues](https://github.com/csc510-fall22-p2-g33/FlashCards/issues?q=is%3Aissue+is%3Aclosed)
 |Chat channel: exists|3|[screenshots](https://github.com/csc510-fall22-p1-g33/blob/main/docs/Screen%20Shot%202022-10-05%20at%205.57.19%20PM.png)
-|Test cases: a large proportion of the issues related to handling failing cases.|3|[issues](https://github.com/csc510-fall22-p2-g33/FlashCards/issues)
+|Test cases: a large proportion of the issues related to handling failing cases.|3|[issues](https://github.com/csc510-fall22-p2-g33/FlashCards/issues) [releases](https://github.com/csc510-fall22-p2-g33/FlashCards/releases)
 |Evidence that the whole team is using the same tools: everyone can get to all tools and files|3|[screenshots](https://github.com/csc510-fall22-p1-g33/blob/main/docs/Screen%20Shot%202022-10-05%20at%205.57.19%20PM.png)
 |Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people)|3|[screenshots](https://github.com/csc510-fall22-p1-g33/blob/main/docs/Screen%20Shot%202022-10-05%20at%205.57.19%20PM.png)
 |Evidence that the whole team is using the same tools (e.g. tutor can ask anyone to share screen, they demonstrate the system running on their computer)|3|[screenshots](https://github.com/csc510-fall22-p1-g33/blob/main/docs/Screen%20Shot%202022-10-05%20at%205.57.19%20PM.png)
