@@ -51,15 +51,28 @@ https://user-images.githubusercontent.com/17693596/194787705-309ebf62-2a3d-4075-
 <a href="https://firebase.google.com/"><img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black" /></a>
 <a href="https://github.com/"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
 <a href="https://ant.design/"><img src="https://img.shields.io/badge/Ant%20Design-1890FF?style=for-the-badge&logo=antdesign&logoColor=white" /></a>
-<a href="https://www.heroku.com/"><img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" /></a>
 
 ## Getting started & Installation:
-- Backend [See README.md](https://github.com/JohnDamilola/FlashCards/blob/main/backend/Readme.md)
-- Frontend [See README.md](https://github.com/JohnDamilola/FlashCards/blob/main/frontend/README.md)
 
-## Demo Links
-- Backend API Endpoint URL: https://flashcards-server-api.herokuapp.com/ [Docs](https://github.com/JohnDamilola/FlashCards/blob/main/backend/api-docs.md)
-- Frontend: https://flashcards-519da.web.app/
+### Production
+
+From the root folder, the application can be run in a production environment with the following command:
+
+```
+sudo docker-compose -f docker-compose.production.yml up --build --scale backend=2 --scale frontend=2
+```
+
+**NOTE:** the above command creates 2 frontend instances and 2 backend instances. The number of instances can be modified by changing the corresponding numbers in the command.
+
+### Development
+
+#### Backend
+
+[See README.md](https://github.com/csc510-fall22-p2-g33/FlashCards/blob/main/backend/Readme.md)
+
+#### Frontend
+
+[See README.md](https://github.com/csc510-fall22-p2-g33/FlashCards/blob/main/frontend/README.md)
 
 ## Current Screens
 <p>
@@ -76,7 +89,10 @@ https://user-images.githubusercontent.com/17693596/194787705-309ebf62-2a3d-4075-
   />
 </p>
 
-## Future Roadmap [See here](https://github.com/users/JohnDamilola/projects/1)
+## Future Roadmap
+
+[See here](https://github.com/orgs/csc510-fall22-p2-g33/projects/1)
+
 ### Phase 1:
 - [x] Create database ER diagram
 - [x] User Login
@@ -89,15 +105,17 @@ https://user-images.githubusercontent.com/17693596/194787705-309ebf62-2a3d-4075-
 - [x] Setup backend and frontend deployment
 
 ### Phase 2:
-- [ ] Delete User Account
-- [ ] Track practice/study progress
-- [ ] Tag/Categorize Cards in a deck
-- [ ] Daily learning streaks stats
-- [ ] Invite friends to a private Study Deck
-- [ ] Chrome extension to be able to highlight a text on a website or online pdf and have an extension option from the right click to help me create/add a card to my deck on the spot.
+- [x] Containerize/Dockerize application
+- [x] Create production optimized build
+- [x] Add service scaling and load balancing
+- [x] Rate a deck which is public
+- [x] Make a card deck public/private
+- [x] Invite friends to a private Study Deck
+- [x] Login with 3rd Party Auth
+- [ ] *See more issues at Github Project link above*
 
 ## Contributions to the Project
-Please refer to the [Contributing.md](https://github.com/JohnDamilola/FlashCards/blob/main/Contributing.md) if you want to contrbute to the FlashCards source code. Follow all the guidelines mentioned and raise a pull request for the developers to review before the code goes to the main source code.
+Please refer to the [Contributing.md](https://github.com/csc510-fall22-p2-g33/FlashCards/blob/main/Contributing.md) if you want to contrbute to the FlashCards source code. Follow all the guidelines mentioned and raise a pull request for the developers to review before the code goes to the main source code.
 
 ## Help
 
