@@ -182,6 +182,9 @@ def rate(id):
         ), 400
 
 
+
+
+
 @deck_bp.route('/deck/delete/<id>', methods=['DELETE'])
 @cross_origin(supports_credentials=True)
 def delete(id):
