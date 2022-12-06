@@ -41,10 +41,10 @@ FlashCards is a spaced repetition learning platform to <b>create</b>, <b>memoriz
 1. Create and customize your own deck of cards
 2. Practice mode
 
-## Update Video
+## Watch New Updated Flashcards in Action
 Watch [on YouTube](https://youtu.be/BGe249gg9sQ)
 
-## Watch Flashcards in Action
+## Watch Old Flashcards App
 https://user-images.githubusercontent.com/17693596/194787705-309ebf62-2a3d-4075-94b4-6da814a953a8.mp4
 
 ## Tech Stack
@@ -79,7 +79,16 @@ sudo docker-compose -f docker-compose.production.yml up --build --scale backend=
 
 [See README.md](https://github.com/csc510-fall22-p2-g33/FlashCards/blob/main/frontend/README.md)
 
-## Current Screens
+## New Screens 
+![Screenshot 2022-12-05 at 11 51 14 PM](https://user-images.githubusercontent.com/7265270/205818812-0fa8af4d-386e-4d48-9318-39666899cc15.png)
+![Screenshot 2022-12-05 at 11 50 56 PM](https://user-images.githubusercontent.com/7265270/205818814-1d5711f5-3c6a-4a79-98d2-580cc2deddb0.png)
+![Screenshot 2022-12-05 at 11 50 46 PM](https://user-images.githubusercontent.com/7265270/205818815-d1689dab-d92e-4d05-8fdc-b2fc73f735dc.png)
+![Screenshot 2022-12-05 at 11 50 35 PM](https://user-images.githubusercontent.com/7265270/205818816-10d06ce6-2a10-4fa6-80aa-794f6bafcbcb.png)
+![Screenshot 2022-12-05 at 11 50 23 PM](https://user-images.githubusercontent.com/7265270/205818819-0daad6f0-1a3c-4d8c-bb9b-5fa18cefe56d.png)
+![Screenshot 2022-12-05 at 11 49 53 PM](https://user-images.githubusercontent.com/7265270/205818820-d405fc1b-29f1-4425-9e81-f1cd41af01f3.png)
+
+
+## Old Screens
 <p>
   <img
     width="100%"
