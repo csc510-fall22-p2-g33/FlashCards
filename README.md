@@ -58,6 +58,8 @@ https://user-images.githubusercontent.com/17693596/194787705-309ebf62-2a3d-4075-
 
 From the root folder, the application can be run in a production environment with the following command:
 
+**NOTE:** make sure you follow the steps for setting up Firebase in the Backend README file (see below).
+
 ```
 sudo docker-compose -f docker-compose.production.yml up --build --scale backend=2 --scale frontend=2
 ```
