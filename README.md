@@ -125,7 +125,7 @@ For assistance, ask a question in the [discussion section](https://github.com/cs
 
 ## Authors 
 
-View contributors [here](https://github.com/csc510-fall22-p2-g33/FlashCards/graphs/contributors)
+View contributors [here](https://github.com/csc510-fall22-p2-g33/FlashCards/graphs/contributors).
 
 ## License
 [MIT](https://tldrlegal.com/license/mit-license)
