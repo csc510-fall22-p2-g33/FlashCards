@@ -84,15 +84,30 @@ const Card = ({ front, back, index, total }: any) => {
   });
     console.log("downloading");
   }
+
+  const [ourText, setOurText] = useState(front)
+  const msg = new SpeechSynthesisUtterance()
+
+  const speechHandler = (e: any) => {
+    if(e.target == e.currentTarget){
+      e.stopPropagation()
+    }
+    msg.text = ourText
+    window.speechSynthesis.speak(msg)
+  }
+  
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
-      <div className="card-item" onClick={() => setIsFlipped(!isFlipped)}>
+      <div className="card-item" onClick={() => {
+        setIsFlipped(!isFlipped)
+        setOurText(back)
+      }}>
         <div>
           {
               isBookmarked ?
-            < input className="star" type="checkbox" title="bookmark page"  style={{'backgroundColor':'green'}} onClick={bookmark}/>
+            < input className="star-practice" type="checkbox" title="bookmark page"  style={{'backgroundColor':'green'}} onClick={bookmark}/>
             :
-            < input className="star" type="checkbox" title="bookmark page"  onClick={bookmark}/>
+            < input className="star-practice" type="checkbox" title="bookmark page"  onClick={bookmark}/>
           }
           <br/><br/>
           <p>Front</p>
@@ -110,17 +125,21 @@ const Card = ({ front, back, index, total }: any) => {
             <button  style={{'backgroundColor':'green'}} onClick={learnt}>Learnt</button>
             </div>
           }
-          
+          <button onClick={speechHandler}>Read Loud</button>
           {/* tithiends */}
         </div>
         <div className="bottom">
             <p>{index + 1} / {total}</p>
         </div>
       </div>
-      <div className="card-item" onClick={() => setIsFlipped(!isFlipped)}>
+      <div className="card-item" onClick={() => {
+        setIsFlipped(!isFlipped);
+        setOurText(front)
+      }}>
         <div>
           <p>Back</p>
           <h2>{back}</h2>
+          <button onClick={speechHandler}>Read Loud</button>
         </div>
         <div className="bottom">
             <p>{index + 1} / {total}</p>

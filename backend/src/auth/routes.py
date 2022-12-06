@@ -83,9 +83,11 @@ def login():
         localId = user['localId']
         userInfo = db.child("user").order_by_child(
                 "userId").equal_to(localId).get()
-        obj = userInfo.each()[0].val()
-        user['displayName'] = obj['displayName']
-        
+        try:
+            obj = userInfo.each()[0].val()
+            user['displayName'] = obj['displayName']
+        except :
+            print("sometimes displayname doesn't exist")
         '''if login is successful, this message is displayed'''
         return jsonify(
             user = user,
