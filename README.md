@@ -121,20 +121,11 @@ Please refer to the [Contributing.md](https://github.com/csc510-fall22-p2-g33/Fl
 
 ## Help
 
-Email any queries to the contributors -
-1. [Swarangi Gaurkar](sgaurka@ncsu.edu)
-2. [Kritika Javali](ksjavali@ncsu.edu)
-3. [John Damilola](djbabalo@ncsu.edu)
-4. [Aaron Dias Barreto](aadiasba@ncsu.edu)
-5. [Leo Hsiang](yhsiang@ncsu.edu)
+For assistance, ask a question in the [discussion section](https://github.com/csc510-fall22-p2-g33/FlashCards/discussions/) of the repository (preferred) or email sreedhara.aneesh@gmail.com.
 
 ## Authors 
 
-1. [Kritika Javali](https://github.com/ksjavali)
-2. [Swarangi Gaurkar](https://github.com/Swarangigaurkar)
-3. [Aaron Dias Barreto](https://github.com/aaron278)
-4. [Leo Hsiang](https://github.com/leoohsiang)
-5. [Damilola Babalola](https://github.com/JohnDamilola)
+View contributors [here](https://github.com/csc510-fall22-p2-g33/FlashCards/graphs/contributors)
 
 ## License
 [MIT](https://tldrlegal.com/license/mit-license)
