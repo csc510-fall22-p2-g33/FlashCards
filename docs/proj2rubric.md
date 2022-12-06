@@ -1,6 +1,6 @@
 Notes|Self-Assessment (90/90)|Evidence
 |-----|---------|----------|
-|Video of Improvement|3|[video](https://drive.google.com/file/d/1xH7gKI-YgijdG0kgkaLZ396JGJMcxFro/view?usp=sharing)
+|Video of Improvement|3|[google video](https://drive.google.com/file/d/1xH7gKI-YgijdG0kgkaLZ396JGJMcxFro/view?usp=sharing) [youtube video](https://www.youtube.com/watch?v=BGe249gg9sQ)
 |Xfold Improvement|3|[In this PR](https://github.com/csc510-fall22-p2-g33/FlashCards/pull/43)
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others...but nevertheless, here is a track record that everyone is contributing a lot)|3|[contributions](https://github.com/csc510-fall22-p2-g33/FlashCards/graphs/contributors)
 |Number of commits|3|[commits](https://github.com/csc510-fall22-p2-g33/FlashCards/graphs/commit-activity)
