@@ -24,7 +24,6 @@
 <a href="https://img.shields.io/github/repo-size/csc510-fall22-p2-g33/FlashCards?color=brightgreen" alt="Repo size">
 <img src="https://img.shields.io/github/repo-size/csc510-fall22-p2-g33/FlashCards?color=brightgreen"/> </a>
 <img src="https://img.shields.io/github/languages/top/csc510-fall22-p2-g33/Flashcards?style=plastic">
-<img src="https://img.shields.io/tokei/lines/github/csc510-fall22-p2-g33/flashcards?style=plastic">
 <a href="https://github.com/csc510-fall22-p2-g33/FlashCards/issues">
   <img src="https://img.shields.io/github/issues-raw/csc510-fall22-p2-g33/flashcards?style=plastic"></a>
 
