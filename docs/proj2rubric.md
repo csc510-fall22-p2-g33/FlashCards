@@ -19,7 +19,7 @@ Notes|Self-Assessment (90/90)|Evidence
 |Use of syntax checkers. |3| The project has a .vscode folder with environment settings for syntax settings
 |Use of code coverage |3|[README](https://github.com/csc510-fall22-p2-g33/FlashCards#readme)
 |Other automated analysis tools|3|[README](https://github.com/csc510-fall22-p2-g33/FlashCards#readme)
-|Test cases exist|3|[tests](https://github.com/csc510-fall22-p2-g33/FlashCards/tree/main/test)
+|Test cases exist|3|[tests](https://github.com/csc510-fall22-p2-g33/FlashCards/tree/main/test) [more tests](https://github.com/csc510-fall22-p2-g33/FlashCards/tree/main/backend/test)
 |Test cases are routinely executed|3|[github workflows](https://github.com/csc510-fall22-p2-g33/FlashCards/tree/main/.github/workflows)
 |The files CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up|3|[CONTRIBUTING.md](https://github.com/csc510-fall22-p2-g33/FlashCards/blob/main/CONTRIBUTING.md)
 |Issues are discussed before they are closed|3|[closed issues](https://github.com/csc510-fall22-p2-g33/FlashCards/issues?q=is%3Aissue+is%3Aclosed)
