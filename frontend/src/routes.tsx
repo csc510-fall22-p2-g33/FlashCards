@@ -5,6 +5,7 @@ import CreateDeck from 'screens/DashboardScreens/CreateDeck'
 import Dashboard from 'screens/DashboardScreens/Dashboard'
 import Explore from 'screens/DashboardScreens/Explore'
 import PracticeDeck from 'screens/DashboardScreens/PracticeDeck'
+import SharedDecks from 'screens/DashboardScreens/SharedDecks'
 import EditDeck from 'screens/DashboardScreens/EditDeck'
 import Home from 'screens/Home'
 
@@ -69,6 +70,10 @@ const dashboardRoutes = [
   {
     path: '/explore',
     element: <Explore />,
+  },
+  {
+    path: '/join',
+    element: <SharedDecks />,
   }
 ]
 

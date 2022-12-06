@@ -21,14 +21,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-import { Card, Popconfirm } from "antd";
-import { useEffect, useState } from "react";
+import { Card, Popconfirm, Input } from "antd";
+import { useEffect, useState, Component } from "react";
 import { Link } from "react-router-dom";
 import EmptyImg from "assets/images/empty.svg";
 import { PropagateLoader } from "react-spinners";
 import http from "utils/api";
 import "./styles.scss";
 import Swal from "sweetalert2";
+import RatingSystem from "../../components/RatingSystem";
+import Popup from 'reactjs-popup';
 
 interface Deck {
   id: string;
@@ -37,6 +39,7 @@ interface Deck {
   description: string;
   visibility: string;
   cards_count: number;
+  rating: number;
 }
 
 const Dashboard = () => {
@@ -45,14 +48,19 @@ const Dashboard = () => {
 
   const flashCardUser = window.localStorage.getItem("flashCardUser");
   const { localId } = (flashCardUser && JSON.parse(flashCardUser)) || {};
+  const { displayName } = (flashCardUser && JSON.parse(flashCardUser)) || {};
+
+  const [friend_email, setEmail] = useState('');
 
   useEffect(() => {
+    console.log(displayName)
     fetchDecks();
   }, []);
 
   const fetchDecks = async () => {
     setFetchingDecks(true);
     const params = { localId };
+
     await http
       .get("/deck/all", {
         params,
@@ -93,6 +101,35 @@ const Dashboard = () => {
       });
   };
 
+  const handleInvite = async(id: any) => {
+
+    console.log ("Inviting friends!")
+    console.log (friend_email, localId, id)
+
+
+    await http
+      .patch(`/deck/invite/${friend_email}/${localId}/${id}`)
+      .then((res) => {
+        const { id } = res.data;
+        Swal.fire({
+          icon: 'success',
+          title: 'Invited in Deck Successfully!',
+          text: 'You have successfully invited your friend',
+          confirmButtonColor: '#221daf',
+        }).then(() => {
+          window.location.replace(`/dashboard`);
+        })
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Deck Invitation Failed!',
+          text: 'An error occurred, please try again',
+          confirmButtonColor: '#221daf',
+        })
+      });
+  };
+
   return (
     <div className="dashboard-page dashboard-commons">
       <section>
@@ -103,7 +140,7 @@ const Dashboard = () => {
                 <div className="flex justify-between items-center">
                   <div>
                     <h3>
-                      <b>Hey, Welcome Back!</b> 👋
+                      <b>Welcome back {displayName}!</b> 👋
                     </h3>
                     <p className="">
                       Let's start creating, memorizing and sharing your
@@ -135,7 +172,7 @@ const Dashboard = () => {
               </div>
             ) : (
               decks.map(
-                ({ id, title, description, visibility, cards_count }, index) => {
+                ({ id, title, description, visibility, cards_count,rating }, index) => {
                   return (
                     <div className="col-md-4">
                       <div className="flash-card__item">
@@ -147,9 +184,36 @@ const Dashboard = () => {
                             {visibility === "public" ? (
                               <i className="lni lni-world"></i>
                             ) : visibility === "private" ? (
-                              <i className="lni lni-lock-alt"></i>
+                              <div>
+                                <i className="lni lni-lock-alt"></i>
+                                
+                              </div>
+
                             ) : null}{" "}
                             {visibility}
+
+                            {/* tithistarts */}
+                            {visibility === "private" &&
+                              <div className="col d-flex justify-content-end">
+                              
+
+                              <Popup trigger={
+                                <button className="btn text-edit">
+                                <i className="lni lni-pencil-alt"></i> Invite
+                              </button>
+                              } 
+                              position="right center">
+                                <div>Enter the email address of your friend to invite.</div>
+                                <Input
+                                  placeholder="Email Address"
+                                  onChange={(e) => setEmail(e.target.value)}
+                                />
+                                <button onClick={() => handleInvite (id)}>Send</button>
+                              </Popup>
+                            </div>
+                            }
+                            {/* tithiends */}
+
                           </div>
                         </div>
                         <p className="description">{description}</p>
@@ -170,6 +234,8 @@ const Dashboard = () => {
                               </button>
                             </Link>
                           </div>
+                          
+
                           <div className="col d-flex justify-content-end">
                             <Popconfirm
                               title="Are you sure to delete this task?"
@@ -183,6 +249,9 @@ const Dashboard = () => {
                             </Popconfirm>
                           </div>
                         </div>
+                        {visibility === "public" && (
+                          <RatingSystem deckid={id} rating={rating}/>
+                        )}
                       </div>
                     </div>
                   );

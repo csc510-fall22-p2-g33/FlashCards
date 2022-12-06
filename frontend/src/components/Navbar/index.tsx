@@ -20,6 +20,15 @@ const Navbar = ({ isDashboard }: any) => {
                 <Link
                   className="nav-link active"
                   aria-current="page"
+                  to="/join"
+                >
+                  Shared Decks
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
                   to="/explore"
                 >
                   Explore

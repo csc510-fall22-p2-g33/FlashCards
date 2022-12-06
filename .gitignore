@@ -21,3 +21,4 @@ coverage.xml
 /backend/src/**/__pycache__
 .DS_Store
 /backend/.flaskenv
+/frontend/yarn.lock

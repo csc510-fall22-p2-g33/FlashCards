@@ -23,14 +23,14 @@ SOFTWARE.
 */
 import { Card, Radio } from "antd";
 import EmptyImg from "assets/images/empty.svg";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
 import Swal from "sweetalert2";
 import http from "utils/api";
 import "./styles.scss";
-
+import { CSVLink, CSVDownload } from 'react-csv';
 interface Deck {
   id: string;
   title: string;
@@ -53,6 +53,7 @@ const CreateCards = () => {
   };
   const [deck, setDeck] = useState<Deck | null>(null);
   const [cards, setCards] = useState([emptyCard]);
+  const [exportCards, setExportCards] = useState([emptyCard]);
   const [originalCards, setOriginalCards] = useState([]);
   const [fetchingDeck, setFetchingDeck] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,6 +61,54 @@ const CreateCards = () => {
 
   const flashCardUser = window.localStorage.getItem("flashCardUser");
   const { localId } = (flashCardUser && JSON.parse(flashCardUser)) || {};
+
+  const [file, setFile] = useState();
+  const [array, setArray] = useState([]);
+  const fileReader = new FileReader();
+
+  const handleOnChange = (e: any) => {
+    setFile(e.target.files[0]);
+  };
+
+  const csvFileToArray = (string1: String) => {
+    const csvHeader = string1.slice(0, string1.indexOf("\n")).split(",");
+    const csvRows = string1.slice(string1.indexOf("\n") + 1).split("\n");
+    csvHeader.pop();
+    csvRows.pop();
+    console.log(csvHeader)
+    console.log(csvRows)
+    // for (let i = 0; i < csvRows.length; i++) {
+    //   text += cars[i] + "<br>";
+    // }
+    const cardHeader = ['front', 'back', 'hint'];
+
+    const array2 = csvRows.map((i: any) => {
+      const values = i.split(",");
+      const obj = cardHeader.reduce((object1: any, header, index) => {
+        object1[header] = values[index];
+        return object1;
+      }, {});
+      return obj;
+    });
+    console.log(array2)
+    setCards(array2)
+    // setArray(array2);
+  };
+
+  const handleOnSubmit = (e: any) => {
+    e.preventDefault();
+    // console.log("yes")
+    if (file) {
+      fileReader.onload = function (event: any) {
+        const text = event.target.result;
+        csvFileToArray(text);
+        // console.log(text)
+      };
+
+      fileReader.readAsText(file);
+    }
+  };
+  // const headerKeys = Object.keys(Object.assign({}, ...array));
 
   useEffect(() => {
     fetchDeck();
@@ -82,6 +131,17 @@ const CreateCards = () => {
       });
   };
 
+  const prepareExportDeck = () =>{
+   
+    const cardHeader = ['front', 'back', 'hint'];
+    console.log(originalCards)
+    const array2 = originalCards.map((item:any)=> { return {'front':item.front, 'back':item.back, 'hint':item.hint} }); 
+    console.log("array2",array2);
+    setExportCards(array2);
+  }; 
+
+
+
   const fetchCards = async () => {
     setFetchingCards(true);
     await http
@@ -91,8 +151,11 @@ const CreateCards = () => {
         if (cards.length !== 0) {
           setCards(cards);
         }
+        
         setOriginalCards(cards);
         setFetchingCards(false);
+        // console.log(originalCards);
+        prepareExportDeck();
       })
       .catch((err) => {
         setFetchingCards(false);
@@ -117,6 +180,29 @@ const CreateCards = () => {
     _cards.push(emptyCard);
     setCards(_cards);
   };
+
+  // const exportDeck = () => {
+  //   // const _cards = [...cards];
+  //   // _cards.push(emptyCard);
+  //   // setCards(_cards);
+
+  // const cardHeader = ['front', 'back', 'hint'];
+
+  //   // const array2 = csvRows.map((i:any) => {
+  //   //   const values = i.split(",");
+  //   //   const obj = cardHeader.reduce((object1:any, header, index) => {
+  //   //     object1[header] = values[index];
+  //   //     return object1;
+  //   //   }, {});
+  //   //   return obj;
+  //   // });
+  // };
+
+  // const csvData = [
+  //   ['front', 'back', 'hint'],
+  //   ['John', 'Doe', 'john.doe@xyz.com'],
+  //   ['Jane', 'Doe', 'jane.doe@xyz.com']
+  // ];
 
   const removeCard = (index: number) => {
     const _cards = [...cards];
@@ -178,6 +264,14 @@ const CreateCards = () => {
                         <i className="lni lni-pencil-alt"></i> Edit Deck details
                       </Link>
                     </button>
+                    <div className="btn btn-mains">
+                      <form>
+                        <input type={"file"} accept={".csv"} id={"csvFileInput"} onChange={handleOnChange} />
+                        <button className="lni" onClick={(e) => {
+                          handleOnSubmit(e);
+                        }}>Import from CSV</button>
+                      </form>
+                    </div>
                   </div>
                 </div>
                 <div className="col-md-12">
@@ -262,8 +356,50 @@ const CreateCards = () => {
                       );
                     })
                   )}
+
+                  {/* <table>
+                          <thead>
+                            <tr key={"header"}>
+                              {headerKeys.map((key) => (
+                                <th>{key}</th>
+                              ))}
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            {card.map((item:any) => (
+                              <tr key={item.id}>
+                                {Object.values(item).map((val:any) => (
+                                  <td>{val}</td>
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table> */}
+
+
+
+
+
                   <div className="row justify-content-end">
-                    <div className="col-md-12 text-right">
+                    <div className="col-md-10 text-right">
+                      <CSVLink data={exportCards} filename={"my-file.csv"} className="btn btn-primary" >
+                        {/* <button
+                          className="btn btn-secondary"> */}
+                          <i className="lni lni-download mr-2"></i>
+                          <span className="">Export Deck</span>
+                        {/* </button> */}
+                      </CSVLink>
+                      {/* <button
+                        className="btn btn-secondary"
+                        type="button"
+                        onClick={exportDeck}
+                      >
+                        <i className="lni lni-download mr-2"></i>
+                        <span className="">Export Deck</span>
+                      </button> */}
+                    </div>
+                    <div className="col-md-2 text-right">
                       <button
                         className="btn btn-secondary"
                         type="button"

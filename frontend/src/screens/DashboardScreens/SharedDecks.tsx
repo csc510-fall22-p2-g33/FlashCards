@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 import EmptyImg from "assets/images/empty.svg";
-import RatingSystem from "../../components/RatingSystem";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
@@ -36,7 +35,6 @@ interface Deck {
   description: string;
   visibility: string;
   cards_count: number;
-  rating: number;
 }
 
 const Explore = () => {
@@ -52,18 +50,38 @@ const Explore = () => {
   }, []);
 
   const fetchDecks = async () => {
+    console.log ("loading shared decks")
     setFetchingDecks(true);
+    const params = { localId };
     await http
-      .get("/deck/all")
+      .get(`/deck/shared/${localId}`, {
+        params,
+      })
       .then((res) => {
         const { decks: _decks } = res.data || {};
         setDecks(_decks);
         setFetchingDecks(false);
+        console.log (_decks)
       })
       .catch((err) => {
         setDecks([]);
         setFetchingDecks(false);
       });
+  
+
+    // tithistarts
+    // const d = [{
+    //   cards_count: 1,
+    //   description: "Meow",
+    //   id: "-NHSRdwZPA2UFQZUe6xw",
+    //   title: "Cat Facts",
+    //   userId: "j2uwMlm9MfUhuFTXB0fA8GLnxui2",
+    //   visibility: "custom",
+    //   shared_with: []
+    // }]
+    // setDecks(d);
+    // setFetchingDecks(false);
+    // tithiends
   };
 
   return (
@@ -73,8 +91,8 @@ const Explore = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="masthead">
-                <h2>Explore flashcards that interests you.</h2>
-                <p>Search and explore public decks that may interest you</p>
+                <h2>Study with your friends!</h2>
+                <p>Accept invitations and join decks tha interest you.</p>
               </div>
             </div>
           </div>
@@ -92,6 +110,8 @@ const Explore = () => {
               <div className="col-md-12">
                 <p className="title">Your Library</p>
               </div>
+        
+        
               {fetchingDecks ? (
                 <div
                   className="col-md-12 text-center d-flex justify-content-center align-items-center"
@@ -121,31 +141,35 @@ const Explore = () => {
                     }
                   })
                   .map(
-                    ({ id, title, description, visibility, cards_count, rating }, index) => {
+                    ({ id, title, description, visibility, cards_count }, index) => {
                       return (
-                        <div className="col-md-4">
-                            <div className="flash-card__item">
+                        
+                        
+                            <div className="col-md-4">
+                              {/* {visibility==='custom'?  */}
+                              {visibility==='private'? 
                               <Link to={`/deck/${id}/practice`}>
-                                <div>
+                                <div className="flash-card__item">
                                   <div className="d-flex justify-content-between align-items-center">
                                     <h5>{title}</h5>
-                                    {visibility === "public" ? (
-                                      <i className="lni lni-world"></i>
-                                    ) : visibility === "private" ? (
-                                      <i className="lni lni-lock-alt"></i>
-                                    ) : null}
+                                    <i className="lni lni-network"></i>  
+                                     {/* icon for shared decks */}
                                   </div>
                                   <p className="description">{description}</p>
                                   <p className="items-count">{cards_count} item(s)</p>
                                 </div>
                               </Link>
-                              <RatingSystem deckid={id} rating={rating}/>
+                              :
+                              <div><p>No Study Deck Shared Yet.</p></div>
+                            }
                             </div>
-                        </div>
+                        
+                        
                       );
                     }
                   )
               )}
+
             </div>
           </div>
         </div>

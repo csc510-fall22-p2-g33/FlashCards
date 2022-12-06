@@ -14,9 +14,13 @@
     "@types/swiper": "^6.0.0",
     "antd": "^4.23.3",
     "axios": "^1.0.0",
+    "firebase": "^9.14.0",
     "formik": "^2.2.9",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "react": "^18.2.0",
     "react-card-flip": "^1.1.5",
+    "react-csv": "^2.2.2",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "react-redux": "^8.0.4",
@@ -24,6 +28,7 @@
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.5",
+    "reactjs-popup": "^2.0.5",
     "sass": "^1.55.0",
     "sweetalert2": "^11.4.37",
     "swiper": "^8.4.2",
@@ -55,5 +60,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-csv": "^1.1.3"
   }
 }

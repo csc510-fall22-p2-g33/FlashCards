@@ -35,7 +35,7 @@ auth_bp = Blueprint(
 )
 
 auth = firebase.auth()
-
+db = firebase.database()
 @auth_bp.route('/', methods=['GET'])
 @cross_origin(supports_credentials=True)
 def index():
@@ -49,8 +49,15 @@ def signup():
         data = request.get_json()
         email = data['email']
         password = data['password']
-    
+        displayname = "John Doe"
         user = auth.create_user_with_email_and_password(email, password)
+        if('name' in data):
+            # data to save
+            displayname = data['name']
+            # Pass the user's localId to the push method with displayname
+            db.child("user").push({ 
+            "userId": user["localId"], "displayName":displayname,"email": email,
+            })
         '''if the registration process is successful, this message is displayed'''
         return jsonify(
             user = user,                            
@@ -66,14 +73,21 @@ def signup():
 
 @auth_bp.route('/login', methods=['POST'])
 @cross_origin(supports_credentials=True)
-def login():                                        
+def login():      
     '''this method is used by registered users to sign in to their account'''
     try:
         data = request.get_json()
         email = data['email']
         password = data['password']                   
-        
         user = auth.sign_in_with_email_and_password(email, password)
+        localId = user['localId']
+        userInfo = db.child("user").order_by_child(
+                "userId").equal_to(localId).get()
+        try:
+            obj = userInfo.each()[0].val()
+            user['displayName'] = obj['displayName']
+        except :
+            print("sometimes displayname doesn't exist")
         '''if login is successful, this message is displayed'''
         return jsonify(
             user = user,
@@ -87,6 +101,28 @@ def login():
             status = 400
         ), 400
 
+
+@auth_bp.route('/user/<userId>', methods = ['GET'])
+@cross_origin(supports_credentials=True)
+def getUserInfo(userId):
+    '''This method is called when the user want to his profile information '''
+    try:
+        user_profile = db.child("user").order_by_child("userId").equal_to(userId).get()
+        users = [user.val() for user in user_profile.each()]
+        return jsonify(
+            user = users[0],
+            message = 'Fetching user successfully',
+            status = 200
+        ), 200
+    except Exception as e:
+        return jsonify(
+            user = [],
+            message = f"An error occurred {e}",
+            status = 400
+        ), 400
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run()
+    
