@@ -1,15 +1,15 @@
 Notes|Self-Assessment (90/90)|Evidence
 |-----|---------|----------|
-|Video1|3|
-|Xfold Improvement|3|
+|Video of Improvement|3|[video](https://drive.google.com/file/d/1xH7gKI-YgijdG0kgkaLZ396JGJMcxFro/view?usp=sharing)
+|Xfold Improvement|3|[In this PR](https://github.com/csc510-fall22-p2-g33/FlashCards/pull/43)
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others...but nevertheless, here is a track record that everyone is contributing a lot)|3|[contributions](https://github.com/csc510-fall22-p2-g33/FlashCards/graphs/contributors)
 |Number of commits|3|[commits](https://github.com/csc510-fall22-p2-g33/FlashCards/graphs/commit-activity)
 |Number of commits: by different people|3|[contributions](https://github.com/csc510-fall22-p2-g33/FlashCards/graphs/contributors) lists number of commits for each group member
 |Issues reports: there are **many**|3|[issues](https://github.com/csc510-fall22-p2-g33/FlashCards/issues)
 |Issues are being closed|3|[closed issues](https://github.com/csc510-fall22-p2-g33/FlashCards/issues?q=is%3Aissue+is%3Aclosed)
 |DOI badge: exists|3|[README](https://github.com/csc510-fall22-p2-g33/FlashCards#readme)
-|Docs: doco generated, format not ugly |3|
-|Docs: what: point descriptions of each class/function (in isolation)|3|
+|Docs: doco generated, format not ugly |3|[Documentation](https://github.com/csc510-fall22-p2-g33/FlashCards/tree/main/backend/Documentation)
+|Docs: what: point descriptions of each class/function (in isolation)|3|[Documentation](https://github.com/csc510-fall22-p2-g33/FlashCards/tree/main/backend/Documentation)
 |Docs: how: for common use cases X,Y,Z mini-tutorials showing worked examples on how to do X,Y,Z|3|[use cases](https://github.com/csc510-fall22-p2-g33/FlashCards/blob/main/docs/use-cases.md)
 |Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing|3|[README](https://github.com/csc510-fall22-p2-g33/FlashCards#readme)
 |Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.|3|[README](https://github.com/csc510-fall22-p2-g33/FlashCards#readme)
